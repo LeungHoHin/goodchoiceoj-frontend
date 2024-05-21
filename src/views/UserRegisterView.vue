@@ -64,7 +64,6 @@ const router = useRouter();
 const handleSubmit = async () => {
   const res = await UserControllerService.userRegisterUsingPost(form);
   if (res.code === 0) {
-    alert("注册成功" + JSON.stringify(res.data));
     router.push({
       path: "/user/login",
       replace: true,

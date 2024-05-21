@@ -16,33 +16,42 @@
       </a-form-item>
       <a-form-item label="判题配置" :content-flex="false" :merge-props="false">
         <a-space direction="vertical" style="min-width: 480px">
-          <a-form-item field="judgeConfig.timeLimit" label="时间限制">
+          <a-form-item
+            field="judgeConfig.timeLimit"
+            label="时间限制（单位：MS）"
+          >
             <a-input-number
               v-model="form.judgeConfig.timeLimit"
               placeholder="请输入时间限制"
               mode="button"
               min="0"
               size="large"
+              style="width: 260px"
             />
           </a-form-item>
-          <a-form-item field="judgeConfig.memoryLimit" label="内存限制">
+          <a-form-item
+            field="judgeConfig.memoryLimit"
+            label="内存限制（单位：KB）"
+            style="width: 800px"
+          >
             <a-input-number
               v-model="form.judgeConfig.memoryLimit"
               placeholder="请输入内存限制"
               mode="button"
               min="0"
               size="large"
+              style="width: 260px"
             />
           </a-form-item>
-          <a-form-item field="judgeConfig.stackLimit" label="堆栈限制">
-            <a-input-number
-              v-model="form.judgeConfig.stackLimit"
-              placeholder="请输入堆栈限制"
-              mode="button"
-              min="0"
-              size="large"
-            />
-          </a-form-item>
+          <!--          <a-form-item field="judgeConfig.stackLimit" label="堆栈限制">-->
+          <!--            <a-input-number-->
+          <!--              v-model="form.judgeConfig.stackLimit"-->
+          <!--              placeholder="请输入堆栈限制"-->
+          <!--              mode="button"-->
+          <!--              min="0"-->
+          <!--              size="large"-->
+          <!--            />-->
+          <!--          </a-form-item>-->
         </a-space>
       </a-form-item>
       <a-form-item
@@ -184,6 +193,7 @@ const doSubmit = async () => {
     );
     if (res.code === 0) {
       message.success("更新成功");
+      router.push("/");
     } else {
       message.error("更新失败，" + res.message);
     }

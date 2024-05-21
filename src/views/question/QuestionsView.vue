@@ -35,7 +35,7 @@
         {{
           `${
             record.submitNum
-              ? (record.acceptedNum / record.submitNum) * 100
+              ? roundFun((record.acceptedNum / record.submitNum) * 100, 2)
               : "0"
           }% (${record.acceptedNum}/${record.submitNum})`
         }}
@@ -72,7 +72,7 @@ const total = ref(0);
 const searchParams = ref<QuestionQueryRequest>({
   title: "",
   tags: [],
-  pageSize: 8,
+  pageSize: 12,
   current: 1,
 });
 
@@ -159,6 +159,11 @@ const doSubmit = () => {
     current: 1,
   };
 };
+
+//保留n位小数
+function roundFun(value: any, n: number) {
+  return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+}
 </script>
 
 <style scoped>

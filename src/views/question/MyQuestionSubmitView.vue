@@ -77,13 +77,12 @@ const searchParams = ref<QuestionSubmitQueryRequest>({
 });
 
 const loadData = async () => {
-  const res = await QuestionControllerService.listQuestionSubmitByPageUsingPost(
-    {
+  const res =
+    await QuestionControllerService.listMyQuestionSubmitByPageUsingPost({
       ...searchParams.value,
       sortField: "createTime",
       sortOrder: "descend",
-    }
-  );
+    });
   if (res.code === 0) {
     dataList.value = res.data.records;
     total.value = res.data.total;
@@ -91,6 +90,11 @@ const loadData = async () => {
     message.error("加载失败，" + res.message);
   }
 };
+
+//保留n位小数
+function roundFun(value: any, n: number) {
+  return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+}
 
 /**
  * 监听 searchParams 变量，改变时触发页面的重新加载
@@ -128,11 +132,11 @@ const columns = [
     slotName: "judgeInfo",
   },
   {
-    title: "消耗时间ms",
+    title: "消耗时间",
     slotName: "time",
   },
   {
-    title: "消耗内存(K)",
+    title: "消耗内存",
     slotName: "memory",
   },
   {
@@ -155,10 +159,6 @@ const onPageChange = (page: number) => {
     current: page,
   };
 };
-
-function roundFun(value: any, n: number) {
-  return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
-}
 
 const router = useRouter();
 

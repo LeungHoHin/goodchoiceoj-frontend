@@ -6,7 +6,7 @@ export default {
   namespaced: true,
   state: () => ({
     loginUser: {
-      userName: "点我登录",
+      userName: null,
       userRole: ACCESS_ENUM.NOT_LOGIN,
     },
   }),

@@ -262,9 +262,10 @@ export class UserControllerService {
    * @returns any Created
    * @throws ApiError
    */
-  public static updateUserUsingPost(
-    userUpdateRequest: UserUpdateRequest
-  ): CancelablePromise<BaseResponse_boolean_ | any> {
+  public static updateUserUsingPost(userUpdateRequest: {
+    id: number | undefined;
+    userName: string | undefined;
+  }): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/user/update",

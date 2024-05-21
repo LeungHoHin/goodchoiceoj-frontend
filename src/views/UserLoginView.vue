@@ -31,7 +31,9 @@
         </a-button>
       </a-form-item>
       <a-form-item class="toRegisterItem">
-        <div class="toRegister" @click="toRegisterView">还没注册？点我注册</div>
+        <a-link class="toRegister" @click="toRegisterView"
+          >还没注册？点我注册</a-link
+        >
       </a-form-item>
     </a-form>
   </div>

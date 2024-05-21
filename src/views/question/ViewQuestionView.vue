@@ -10,14 +10,14 @@
                 :column="{ xs: 1, md: 2, lg: 3 }"
               >
                 <a-descriptions-item label="时间限制">
-                  {{ question.judgeConfig.timeLimit }}
+                  {{ question.judgeConfig.timeLimit }}MS
                 </a-descriptions-item>
                 <a-descriptions-item label="内存限制">
-                  {{ question.judgeConfig.memoryLimit }}
+                  {{ question.judgeConfig.memoryLimit }}K
                 </a-descriptions-item>
-                <a-descriptions-item label="堆栈限制">
-                  {{ question.judgeConfig.stackLimit }}
-                </a-descriptions-item>
+                <!--                <a-descriptions-item label="堆栈限制">-->
+                <!--                  {{ question.judgeConfig.stackLimit }}-->
+                <!--                </a-descriptions-item>-->
               </a-descriptions>
               <MdViewer :value="question.content || ''" />
               <template #extra>
@@ -25,7 +25,7 @@
                   <a-tag
                     v-for="(tag, index) of question.tags"
                     :key="index"
-                    color="green"
+                    color="blue"
                     >{{ tag }}
                   </a-tag>
                 </a-space>
@@ -40,14 +40,14 @@
                 :column="{ xs: 1, md: 2, lg: 3 }"
               >
                 <a-descriptions-item label="时间限制">
-                  {{ question.judgeConfig.timeLimit }}
+                  {{ question.judgeConfig.timeLimit }}MS
                 </a-descriptions-item>
                 <a-descriptions-item label="内存限制">
-                  {{ question.judgeConfig.memoryLimit }}
+                  {{ question.judgeConfig.memoryLimit }}K
                 </a-descriptions-item>
-                <a-descriptions-item label="堆栈限制">
-                  {{ question.judgeConfig.stackLimit }}
-                </a-descriptions-item>
+                <!--                <a-descriptions-item label="堆栈限制">-->
+                <!--                  {{ question.judgeConfig.stackLimit }}-->
+                <!--                </a-descriptions-item>-->
               </a-descriptions>
               <MdViewer :value="question.answer || ''" />
               <template #extra>
@@ -154,20 +154,24 @@ const doSubmit = async () => {
     questionId: question.value.id,
   });
   if (res.code === 0) {
-    message.success("提交成功！请等待运行，若显示null则刷新几次。");
-    await sleep(3000);
-    router.push("/question_submit");
+    message.success("提交成功！");
+    router.push("/my/question_submit");
   } else {
     message.error("提交失败," + res.message);
   }
 };
-
 /**
  * 页面加载时，请求数据
  */
 onMounted(() => {
   loadData();
 });
+
+// //5秒调用一次loadData 方法
+// window.setInterval(() => {
+//   console.log("页面刷新");
+//   setTimeout(loadData, 0);
+// }, 5000);
 
 const changeCode = (value: string) => {
   form.value.code = value;
