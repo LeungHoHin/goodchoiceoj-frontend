@@ -31,7 +31,7 @@
           </a-form-item>
           <a-form-item
             field="judgeConfig.memoryLimit"
-            label="内存限制（单位：KB）"
+            label="内存限制（单位：MB）"
             style="width: 800px"
           >
             <a-input-number

@@ -37,14 +37,10 @@
         {{ JSON.stringify(record.judgeInfo.message ?? "判题中") }}
       </template>
       <template #time="{ record }">
-        {{ JSON.stringify(roundFun(record.judgeInfo.time, 0) ?? "判题中") }}ms
+        {{ timeCost(record.judgeInfo.time) }}
       </template>
       <template #memory="{ record }">
-        {{
-          JSON.stringify(
-            roundFun(record.judgeInfo.memory / (1000 * 1024), 0) ?? "判题中"
-          )
-        }}KB
+        {{ memoryCost(record.judgeInfo.memory) }}
       </template>
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
@@ -128,11 +124,11 @@ const columns = [
     slotName: "judgeInfo",
   },
   {
-    title: "消耗时间ms",
+    title: "消耗时间",
     slotName: "time",
   },
   {
-    title: "消耗内存(K)",
+    title: "消耗内存",
     slotName: "memory",
   },
   {
@@ -148,6 +144,29 @@ const columns = [
     slotName: "createTime",
   },
 ];
+
+const timeCost = (timeStr: string) => {
+  if (timeStr == null) {
+    return "判题中";
+  } else if (timeStr == "100000") {
+    return "大于10秒";
+  } else {
+    return JSON.stringify(roundFun(timeStr, 0)) + "ms";
+  }
+};
+
+const memoryCost = (memoryAny: any) => {
+  const memory = parseInt(memoryAny);
+  if (memory == null) {
+    return "判题中";
+  } else if (memory / (1024 * 1024) > 1) {
+    return JSON.stringify(roundFun(memory / (1024 * 1024), 1)) + "MB";
+  } else if (memory / (1024 * 1024) < 1) {
+    return JSON.stringify(roundFun(memory / 1024, 1)) + "KB";
+  } else if (memory / 1024 < 1) {
+    return JSON.stringify(memory) + "B";
+  }
+};
 
 const onPageChange = (page: number) => {
   searchParams.value = {
