@@ -61,6 +61,13 @@
               }}
             </a-card>
             <a-card
+              class="exampleCard"
+              :style="{ width: '300px' }"
+              title="示例管理员"
+            >
+              账号：admin <br />密码：12345678
+            </a-card>
+            <a-card
               class="guideCard"
               :style="{ width: '300px' }"
               title="良好选OJ使用方法"
@@ -90,13 +97,6 @@
                 </a-list-item>
                 <a-list-item>可以添加多个输入输出用例</a-list-item>
               </a-list>
-            </a-card>
-            <a-card
-              class="exampleCard"
-              :style="{ width: '300px' }"
-              title="示例管理员"
-            >
-              账号：admin <br />密码：12345678
             </a-card>
             <a-card
               class="authorCard"
@@ -239,6 +239,7 @@ const handleCancel = () => {
 
 .userCard {
   transform: translateY(-4px);
+  color: blue;
 }
 
 .authorCard {

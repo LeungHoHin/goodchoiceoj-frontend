@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import * as monaco from "monaco-editor";
-import { onMounted, ref, toRaw, withDefaults, defineProps } from "vue";
+import { defineProps, onMounted, ref, toRaw, withDefaults } from "vue";
 
 /**
  * 定义组件属性类型

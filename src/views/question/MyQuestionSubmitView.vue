@@ -68,7 +68,7 @@ const total = ref(0);
 const searchParams = ref<QuestionSubmitQueryRequest>({
   questionId: undefined,
   language: undefined,
-  pageSize: 10,
+  pageSize: 15,
   current: 1,
 });
 
